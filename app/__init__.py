@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request
 from app.config import Config
 from app.core.database import Database
+from flask import Flask, render_template, request
 
 db = Database()
 
@@ -10,6 +10,9 @@ def create_app(config_obj=Config) -> Flask:
     app.config.from_object(config_obj)
 
     db.init_app(app)
+
+    from app import models  # to create database with models
+
     db.init_db()
 
     from app.core.passwords import generate_hash
