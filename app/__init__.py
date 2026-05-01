@@ -12,10 +12,12 @@ def create_app(config_obj=Config) -> Flask:
     db.init_app(app)
 
     from app import models  # to create database with models
+    from app.router import register_routes
+    from app.core.passwords import generate_hash
 
     db.init_db()
 
-    from app.core.passwords import generate_hash
+    register_routes(app)
 
     @app.route('/')
     def index():
