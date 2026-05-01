@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from app.config import Config
 
 
@@ -8,6 +8,6 @@ def create_app(config_obj=Config) -> Flask:
 
     @app.route('/')
     def index():
-        return {"message": "Hello World"}
+        return render_template('index.html')
     
     return app
